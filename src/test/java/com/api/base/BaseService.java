@@ -14,7 +14,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class BaseService {
 	
-	// this is rappar for restassured
+	// this is wrapper for restassured
 	// this is stores base url
 	//creating the request
 	// handling the response (using this baservice we can able to do these action)

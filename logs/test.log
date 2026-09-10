@@ -428,3 +428,81 @@ Connection=keep-alive
 }
 09:06:20.460 [main] INFO  com.api.listeners.TestListener - Passed!!!!loginTest
 09:06:20.493 [main] INFO  com.api.listeners.TestListener - Test Suite Completed!!!
+17:06:56.589 [main] INFO  com.api.listeners.TestListener - Test Suite Started!!!
+17:06:56.638 [main] INFO  com.api.listeners.TestListener - Started!!!!loginTest
+17:06:56.638 [main] INFO  com.api.listeners.TestListener - Description!!verify the login api is working....
+17:06:58.153 [main] INFO  com.api.filters.LoggingFilters - BASE URI:http://64.227.160.186:8080
+17:06:58.153 [main] INFO  com.api.filters.LoggingFilters - Request Header:Accept=*/*
+Content-Type=application/json
+17:06:58.154 [main] INFO  com.api.filters.LoggingFilters - Request Payload:{"username":"gopimohan7321@gmail.com","password":"gopi1234"}
+17:06:58.802 [main] INFO  com.api.filters.LoggingFilters - BASE URI:200
+17:06:58.803 [main] INFO  com.api.filters.LoggingFilters - Request Header:Vary=Origin
+Vary=Access-Control-Request-Method
+Vary=Access-Control-Request-Headers
+Access-Control-Allow-Origin=https://swift.techwithjatin.com
+Access-Control-Allow-Methods=GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Max-Age=3600
+Access-Control-Allow-Headers=Authorization, Content-Type, Accept
+Access-Control-Allow-Credentials=true
+X-Content-Type-Options=nosniff
+X-XSS-Protection=0
+Cache-Control=no-cache, no-store, max-age=0, must-revalidate
+Pragma=no-cache
+Expires=0
+X-Frame-Options=DENY
+Content-Type=application/json
+Transfer-Encoding=chunked
+Date=Thu, 30 Apr 2026 11:36:58 GMT
+Keep-Alive=timeout=60
+Connection=keep-alive
+17:06:58.839 [main] INFO  com.api.filters.LoggingFilters - Request Body:{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnb3BpbW9oYW43MzIxQGdtYWlsLmNvbSIsImlhdCI6MTc3NzU0OTAxOCwiZXhwIjoxNzc3NTUyNjE4fQ.TpxsXNr2eiNtk2c223knaF9nIw7JBIKMgcvnciy43gQ",
+    "type": "Bearer",
+    "id": 1394,
+    "username": "gopimohan7321@gmail.com",
+    "email": "Rashmitha123@gmail.com",
+    "roles": [
+        "ROLE_USER"
+    ]
+}
+17:06:58.928 [main] INFO  com.api.listeners.TestListener - Passed!!!!loginTest
+17:06:58.978 [main] INFO  com.api.listeners.TestListener - Test Suite Completed!!!
+13:59:14.617 [main] INFO  com.api.listeners.TestListener - Test Suite Started!!!
+13:59:14.667 [main] INFO  com.api.listeners.TestListener - Started!!!!loginTest
+13:59:14.667 [main] INFO  com.api.listeners.TestListener - Description!!verify the login api is working....
+13:59:16.383 [main] INFO  com.api.filters.LoggingFilters - BASE URI:http://64.227.160.186:8080
+13:59:16.383 [main] INFO  com.api.filters.LoggingFilters - Request Header:Accept=*/*
+Content-Type=application/json
+13:59:16.384 [main] INFO  com.api.filters.LoggingFilters - Request Payload:{"username":"gopimohan7321@gmail.com","password":"gopi1234"}
+13:59:17.178 [main] INFO  com.api.filters.LoggingFilters - BASE URI:200
+13:59:17.179 [main] INFO  com.api.filters.LoggingFilters - Request Header:Vary=Origin
+Vary=Access-Control-Request-Method
+Vary=Access-Control-Request-Headers
+Access-Control-Allow-Origin=https://swift.techwithjatin.com
+Access-Control-Allow-Methods=GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Max-Age=3600
+Access-Control-Allow-Headers=Authorization, Content-Type, Accept
+Access-Control-Allow-Credentials=true
+X-Content-Type-Options=nosniff
+X-XSS-Protection=0
+Cache-Control=no-cache, no-store, max-age=0, must-revalidate
+Pragma=no-cache
+Expires=0
+X-Frame-Options=DENY
+Content-Type=application/json
+Transfer-Encoding=chunked
+Date=Sat, 02 May 2026 08:29:16 GMT
+Keep-Alive=timeout=60
+Connection=keep-alive
+13:59:17.298 [main] INFO  com.api.filters.LoggingFilters - Request Body:{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnb3BpbW9oYW43MzIxQGdtYWlsLmNvbSIsImlhdCI6MTc3NzcxMDU1NiwiZXhwIjoxNzc3NzE0MTU2fQ.0u45ZCKwwDmSOb8DplVRNl8nw7jhvLyVGjGsALsCdbc",
+    "type": "Bearer",
+    "id": 1394,
+    "username": "gopimohan7321@gmail.com",
+    "email": "Rashmitha123@gmail.com",
+    "roles": [
+        "ROLE_USER"
+    ]
+}
+13:59:17.357 [main] INFO  com.api.listeners.TestListener - Passed!!!!loginTest
+13:59:17.399 [main] INFO  com.api.listeners.TestListener - Test Suite Completed!!!
