@@ -1,0 +1,158 @@
+name: API Regression Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'TestNG Suite name (without .xml extension)'
+        required: false
+        default: 'suite'
+      tags:
+        description: 'Cucumber tag filter (e.g. @auth, @events, @bookings)'
+        required: false
+        default: ''
+      ai_enabled:
+        description: 'Enable AI failure analysis (requires OPENAI_API_KEY secret)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  regression-tests:
+    name: Run API Regression Tests
+    runs-on: ubuntu-latest
+
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      AGR_AI_ENABLED: ${{ github.event.inputs.ai_enabled || 'false' }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Execute Tests
+        run: |
+          SUITE="${{ github.event.inputs.suite }}"
+          TAGS="${{ github.event.inputs.tags }}"
+          
+          if [ -z "$SUITE" ]; then
+            SUITE="suite"
+          fi
+          
+          if [ -n "$TAGS" ]; then
+            echo "Running test suite '${SUITE}' with tags '${TAGS}'..."
+            mvn clean test -B -Dsuite="$SUITE" -Dcucumber.filter.tags="$TAGS"
+          else
+            echo "Running test suite '${SUITE}'..."
+            mvn clean test -B -Dsuite="$SUITE"
+          fi
+
+      - name: Generate Allure Report
+        if: always()
+        run: mvn allure:report -B
+
+      - name: Upload Allure HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: target/site/allure-maven-plugin/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload Cucumber Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-reports
+          path: target/cucumber-reports/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload Surefire TestNG Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload AI Failure Analysis Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-analysis-reports
+          path: target/ai-analysis/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload Execution Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: execution-logs
+          path: logs/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Publish Test Report to Check Run
+        if: always()
+        uses: dorny/test-reporter@v1
+        continue-on-error: true
+        with:
+          name: Cucumber BDD Test Results
+          path: target/cucumber-reports/report.xml
+          reporter: java-junit
+
+      - name: Generate GitHub Actions Job Summary
+        if: always()
+        run: |
+          if [ -f target/cucumber-reports/report.xml ]; then
+            python3 -c "
+          import xml.etree.ElementTree as ET
+          try:
+              tree = ET.parse('target/cucumber-reports/report.xml')
+              root = tree.getroot()
+              tests = root.attrib.get('tests', '0')
+              failures = root.attrib.get('failures', '0')
+              errors = root.attrib.get('errors', '0')
+              skipped = root.attrib.get('skipped', '0')
+              time = root.attrib.get('time', '0')
+              passed = int(tests) - int(failures) - int(errors) - int(skipped)
+
+              with open('${GITHUB_STEP_SUMMARY}', 'a') as f:
+                  f.write('## 🧪 Test Execution Summary\n\n')
+                  f.write('| Metric | Count |\n')
+                  f.write('| :--- | :--- |\n')
+                  f.write(f'| 📊 **Total Scenarios** | `{tests}` |\n')
+                  f.write(f'| ✅ **Passed** | `{passed}` |\n')
+                  f.write(f'| ❌ **Failures** | `{failures}` |\n')
+                  f.write(f'| ⚠️ **Errors** | `{errors}` |\n')
+                  f.write(f'| ⏭️ **Skipped** | `{skipped}` |\n')
+                  f.write(f'| ⏱️ **Total Duration** | `{time}s` |\n\n')
+                  f.write('> 📦 **Reports & Logs:** Download the full Allure report, Cucumber HTML, and execution logs from the **Run Artifacts** above.\n')
+          except Exception as e:
+              print('Failed to write step summary:', e)
+          "
+          fi

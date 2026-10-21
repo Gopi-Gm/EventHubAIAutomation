@@ -6,9 +6,10 @@ This is a robust and scalable API Automation Framework built using Java, REST As
 
 *   **Language:** Java 11
 *   **API Automation:** REST Assured (v5.3.0)
+*   **BDD Framework:** Cucumber (v7.18.0)
 *   **Test Runner & Assertions:** TestNG (v7.10.2)
 *   **Data Binding/Serialization:** Jackson (v2.18.2)
-*   **Reporting:** ExtentReports (v5.1.1)
+*   **Reporting:** Allure Report (v2.24.0), ExtentReports (v5.1.1)
 *   **Logging:** Log4j2 (v2.20.0)
 *   **Build Tool:** Maven
 
@@ -39,6 +40,11 @@ src
     │           │   └── response
     │           │       ├── LoginResponse.java
     │           │       └── UserProfileResponse.java
+    │           ├── utility
+    │           │   ├── AssertionUtils.java
+    │           │   ├── ConfigReader.java
+    │           │   ├── DataUtils.java
+    │           │   └── JsonUtils.java
     │           └── tests
     │               ├── AccountCreationTest.java
     │               ├── ForgotPasswordTerst.java
@@ -76,3 +82,8 @@ The framework is designed with a modular architecture, promoting code reusabilit
     *   `log4j2.xml` in `src/test/resources` configures the logging levels and output destinations (console, files).
     *   `pom.xml`: Manages project dependencies and build plugins (like `maven-surefire-plugin` for executing TestNG suites).
     *   `suite.xml`: The TestNG suite file used to group and run specific tests or test classes.
+
+## Test Execution Report
+
+![Allure Test Report](screenshots/allure-report.png)
+

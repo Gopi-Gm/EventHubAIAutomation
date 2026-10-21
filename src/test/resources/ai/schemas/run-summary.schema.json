@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RunSummary",
+  "description": "JSON Schema for the run-level summary object",
+  "type": "object",
+  "required": ["summary"],
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "1-3 sentence plain-English summary of the entire test run's AI analysis",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

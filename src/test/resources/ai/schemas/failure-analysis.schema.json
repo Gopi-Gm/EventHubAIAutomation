@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FailureAnalysisResult",
+  "description": "JSON Schema for the AI failure analysis result object returned by OpenAI and stored in ai-report.json",
+  "type": "object",
+  "required": ["scenario", "category", "summary", "likelyCause", "suggestedChecks"],
+  "properties": {
+    "scenario": {
+      "type": "string",
+      "description": "The test/scenario name that failed",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "description": "Failure classification category",
+      "enum": ["AUTH", "DATA_SETUP", "API_CONTRACT", "ASSERTION", "ENVIRONMENT", "TIMING", "OTHER"]
+    },
+    "summary": {
+      "type": "string",
+      "description": "1-2 sentence plain-English summary of the failure",
+      "minLength": 1
+    },
+    "likelyCause": {
+      "type": "string",
+      "description": "Single most likely root cause of the failure",
+      "minLength": 1
+    },
+    "suggestedChecks": {
+      "type": "array",
+      "description": "Ordered list of actionable checks/fixes to investigate",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}
