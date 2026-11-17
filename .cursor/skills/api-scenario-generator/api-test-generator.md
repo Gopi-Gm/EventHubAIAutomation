@@ -1,4 +1,4 @@
-# AGR API Test Generator Skill
+# API Test Generator Skill
 
 ## Purpose
 Use this skill to generate new TestNG test methods and supporting model classes
@@ -50,5 +50,5 @@ See [`examples/party-feature-example.feature`](./examples/party-feature-example.
 for a complete Gherkin-style example adapted to TestNG.
 
 ## AI-powered generation
-When `agr.ai.enabled=true`, use the prompt template at:
+When `ai.enabled=true`, use the prompt template at:
 `src/test/resources/ai/prompts/scenario-generation.txt`

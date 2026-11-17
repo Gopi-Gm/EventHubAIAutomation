@@ -1,3 +1,4 @@
+@events @regression
 Feature: EventHub Event Management
 
   Background:
@@ -6,6 +7,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 1: Retrieve all events
   # ------------------------------------------------------------------ #
+  @smoke @regression
   Scenario: Get all events
     When I request all events
     Then the response status code should be 200
@@ -13,6 +15,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 2: Full event lifecycle - Create, Update, Delete
   # ------------------------------------------------------------------ #
+  @smoke @regression
   Scenario: Create update and delete an event
     When I create an event with title "Tech Summit 2026" in city "San Francisco"
     Then the response status code should be 201
@@ -25,6 +28,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 3: Get event by ID
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Get event by ID
     When I create an event with title "Lookup Event" in city "New York"
     And the event is created successfully
@@ -34,6 +38,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 4: Get event with invalid ID returns not found
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Get event by invalid ID
     When I fetch event by ID "999999"
     Then the response status code should be 404
@@ -41,6 +46,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 5: Search events by keyword
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Search events by keyword
     When I search events with query "technology"
     Then the response status code should be 200
@@ -48,6 +54,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 6: Filter events by category
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Get events by category
     When I get events filtered by category "Technology"
     Then the response status code should be 200
@@ -55,8 +62,7 @@ Feature: EventHub Event Management
   # ------------------------------------------------------------------ #
   # Scenario 7: Filter events by city
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Get events by city
     When I get events filtered by city "San Francisco"
     Then the response status code should be 200
-
-

@@ -1,4 +1,4 @@
-# AGR API Verifier — Reference
+# API Verifier — Reference
 
 ## REST Assured Assertion Patterns
 

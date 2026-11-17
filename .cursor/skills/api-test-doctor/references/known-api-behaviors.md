@@ -39,7 +39,7 @@
 
 ### 8. Rate limiting
 - The public Petstore API has no formal rate limits, but excessive requests may cause throttling
-- Keep `agr.ai.budget.max-calls-per-run=20` (default) to avoid API key rate limits on OpenAI
+- Keep `ai.budget.max-calls-per-run=20` (default) to avoid API key rate limits on OpenAI
 
 ## Endpoint Summary
 

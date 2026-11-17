@@ -1,4 +1,4 @@
-# AGR API Response Verifier Skill
+# API Response Verifier Skill
 
 ## Purpose
 Use this skill to perform AI-powered advisory analysis on API response field mismatches.
@@ -31,7 +31,7 @@ Logs AI advisory to console with:
 | BREAKING  | Semantic value change — real API regression, escalate to API team. |
 
 ## Requirements
-- `agr.ai.enabled=true` in `test-config.properties`
+- `ai.enabled=true` in `test-config.properties`
 - `OPENAI_API_KEY` environment variable set
 
 ## Reference

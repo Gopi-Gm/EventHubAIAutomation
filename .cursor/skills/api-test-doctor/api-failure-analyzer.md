@@ -1,4 +1,4 @@
-# AGR Test Doctor Skill — AI Failure Analyzer
+# Test Doctor Skill — AI Failure Analyzer
 
 ## Purpose
 Use this skill to diagnose and explain test failures using AI. When a test fails,
@@ -42,7 +42,7 @@ Optional<FailureAnalysisResult> result = AiOrchestrator.analyzeFailure(ctx);
 ```
 
 ## Automatic activation
-When `agr.ai.enabled=true`, `AiReportEnhancer` automatically triggers this
+When `ai.enabled=true`, `AiReportEnhancer` automatically triggers this
 skill for every TestNG test failure. See `target/ai-analysis/ai-dashboard.html`
 after the run.
 

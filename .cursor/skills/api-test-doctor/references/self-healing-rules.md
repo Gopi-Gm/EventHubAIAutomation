@@ -8,17 +8,17 @@ without requiring immediate code changes. It does NOT mean silently ignoring rea
 ## Self-healing strategies implemented
 
 ### 1. AI Advisory (non-breaking)
-When `agr.ai.enabled=true`, `ApiResponseVerifier.adviseOnMismatch()` classifies field
+When `ai.enabled=true`, `ApiResponseVerifier.adviseOnMismatch()` classifies field
 mismatches as COSMETIC, ADDITIVE, or BREAKING. This helps decide:
 - **COSMETIC**: update the assertion locally (test fix)
 - **ADDITIVE**: ignore the extra field (test is fine)
 - **BREAKING**: escalate to API team (real regression)
 
-### 2. Fail-Open Mode (`agr.ai.fail-open=true`)
+### 2. Fail-Open Mode (`ai.fail-open=true`)
 AI analysis failures never break the test suite. Tests pass/fail based solely
 on deterministic assertions, not AI output.
 
-### 3. Budget Guard (`agr.ai.budget.max-calls-per-run=20`)
+### 3. Budget Guard (`ai.budget.max-calls-per-run=20`)
 Prevents runaway AI calls if many tests fail simultaneously in CI.
 
 ## What self-healing does NOT mean

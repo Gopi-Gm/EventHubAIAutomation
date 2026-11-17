@@ -1,3 +1,4 @@
+@booking @regression
 Feature: EventHub Booking Management
 
   Background:
@@ -6,6 +7,7 @@ Feature: EventHub Booking Management
   # ------------------------------------------------------------------ #
   # Scenario 1: Retrieve all bookings for the logged-in user
   # ------------------------------------------------------------------ #
+  @smoke @regression
   Scenario: Get all bookings
     When I request all bookings
     Then the response status code should be 200
@@ -13,6 +15,7 @@ Feature: EventHub Booking Management
   # ------------------------------------------------------------------ #
   # Scenario 2: Full booking lifecycle - Create, Update, Cancel
   # ------------------------------------------------------------------ #
+  @smoke @regression
   Scenario: Create update and cancel a booking
     Given an event exists to book
     When I create a booking for 2 tickets
@@ -24,6 +27,7 @@ Feature: EventHub Booking Management
   # ------------------------------------------------------------------ #
   # Scenario 3: Get booking by ID
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Get booking by ID
     Given an event exists to book
     When I create a booking for 1 tickets
@@ -35,6 +39,7 @@ Feature: EventHub Booking Management
   # ------------------------------------------------------------------ #
   # Scenario 4: Get booking with invalid ID returns not found
   # ------------------------------------------------------------------ #
+  @regression
   Scenario: Get booking by invalid ID
     When I fetch booking by ID "999999"
     Then the response status code should be 404

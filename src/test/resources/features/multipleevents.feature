@@ -1,4 +1,4 @@
-@multipleevents
+@multipleevents @regression
 Feature: EventHub Multiple Events Creation and Management
 
   Background:

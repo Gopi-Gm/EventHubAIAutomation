@@ -11,12 +11,12 @@ import java.util.Properties;
  * Central configuration for the AI analysis layer.
  *
  * Reads settings from (in priority order):
- *   1. Environment variables (AGR_AI_ENABLED, OPENAI_API_KEY)
- *   2. System properties (-Dagr.ai.enabled, -Dopenai.api.key)
+ *   1. Environment variables (AI_ENABLED, OPENAI_API_KEY)
+ *   2. System properties (-Dai.enabled, -Dopenai.api.key)
  *   3. test-config.properties on the classpath
  *
  * AI is effectively enabled only when BOTH:
- *   - agr.ai.enabled = true
+ *   - ai.enabled = true
  *   - OPENAI_API_KEY is present and non-blank
  *
  * When disabled, all AI components are silent no-ops.
@@ -26,13 +26,13 @@ public class AiConfig {
     private static final Logger logger = LogManager.getLogger(AiConfig.class);
 
     // Property / env-var keys
-    public static final String PROP_ENABLED        = "agr.ai.enabled";
-    public static final String PROP_FAIL_OPEN      = "agr.ai.fail-open";
-    public static final String PROP_MAX_CALLS      = "agr.ai.budget.max-calls-per-run";
-    public static final String PROP_MODEL          = "agr.ai.model";
+    public static final String PROP_ENABLED        = "ai.enabled";
+    public static final String PROP_FAIL_OPEN      = "ai.fail-open";
+    public static final String PROP_MAX_CALLS      = "ai.budget.max-calls-per-run";
+    public static final String PROP_MODEL          = "ai.model";
     public static final String PROP_API_KEY        = "openai.api.key";   // system property
     public static final String ENV_API_KEY         = "OPENAI_API_KEY";   // environment variable
-    public static final String ENV_AI_ENABLED      = "AGR_AI_ENABLED";
+    public static final String ENV_AI_ENABLED      = "AI_ENABLED";
 
     // Defaults
     public static final String DEFAULT_MODEL       = "gpt-4o-mini";

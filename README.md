@@ -184,7 +184,7 @@ Rather than replacing deterministic test assertions, the AI layer acts as an **a
 
 The AI layer adheres to four strict enterprise safety guardrails:
 
-1. **Fail-Open Strategy (`agr.ai.fail-open = true`)**:
+1. **Fail-Open Strategy (`ai.fail-open = true`)**:
    - AI execution is strictly non-blocking. If the OpenAI API is unreachable, times out, encounters a 429 rate limit, or runs out of budget, the core test suite is never failed or halted.
 2. **Zero Secret Leakage (`AiPromptSanitizer`)**:
    - All prompts, stack traces, and error payloads pass through the sanitizer before transmission.
@@ -205,31 +205,31 @@ Settings are defined in `src/test/resources/test-config.properties` and can be o
 
 | Property | Environment Variable | Default | Description |
 |---|---|---|---|
-| `agr.ai.enabled` | `AGR_AI_ENABLED` | `false` | Master toggle for enabling AI failure analysis. |
+| `ai.enabled` | `AI_ENABLED` | `false` | Master toggle for enabling AI failure analysis. |
 | `openai.api.key` | `OPENAI_API_KEY` | *(None)* | OpenAI API key. Required when AI is enabled. |
-| `agr.ai.model` | *(None)* | `gpt-4o-mini` | OpenAI Chat model used for analysis. |
-| `agr.ai.budget.max-calls-per-run` | *(None)* | `20` | Maximum number of AI calls allowed per test execution. |
-| `agr.ai.fail-open` | *(None)* | `true` | When true, AI errors do not fail the test suite run. |
+| `ai.model` | *(None)* | `gpt-4o-mini` | OpenAI Chat model used for analysis. |
+| `ai.budget.max-calls-per-run` | *(None)* | `20` | Maximum number of AI calls allowed per test execution. |
+| `ai.fail-open` | *(None)* | `true` | When true, AI errors do not fail the test suite run. |
 
-> **Note:** AI analysis is only activated when **both** `agr.ai.enabled = true` **and** a valid `OPENAI_API_KEY` is provided. Otherwise, all AI components act as silent no-ops.
+> **Note:** AI analysis is only activated when **both** `ai.enabled = true` **and** a valid `OPENAI_API_KEY` is provided. Otherwise, all AI components act as silent no-ops.
 
 #### Running Tests with AI Enabled
 
 **Option 1: Using System Properties**
 ```bash
-mvn clean test -Dsuite=suite -Dagr.ai.enabled=true -Dopenai.api.key=sk-your-openai-key
+mvn clean test -Dsuite=suite -Dai.enabled=true -Dopenai.api.key=sk-your-openai-key
 ```
 
 **Option 2: Using Environment Variables**
 ```bash
 # Windows (PowerShell)
 $env:OPENAI_API_KEY="sk-your-openai-key"
-$env:AGR_AI_ENABLED="true"
+$env:AI_ENABLED="true"
 mvn clean test -Dsuite=suite
 
 # Linux / macOS
 export OPENAI_API_KEY="sk-your-openai-key"
-export AGR_AI_ENABLED="true"
+export AI_ENABLED="true"
 mvn clean test -Dsuite=suite
 ```
 

@@ -1,4 +1,4 @@
-# Failure RCA Prompt — AGR Test Doctor
+# Failure RCA Prompt — Test Doctor
 
 ## Prompt instructions for per-scenario root cause analysis
 

@@ -1,4 +1,4 @@
-# AGR Change Impact Skill
+# API Change Impact Skill
 
 ## Purpose
 Use this skill to understand the blast radius of an API or test code change before

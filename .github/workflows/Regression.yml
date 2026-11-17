@@ -37,7 +37,7 @@ jobs:
 
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      AGR_AI_ENABLED: ${{ github.event.inputs.ai_enabled || 'false' }}
+      AI_ENABLED: ${{ github.event.inputs.ai_enabled || 'false' }}
 
     steps:
       - name: Checkout Code
